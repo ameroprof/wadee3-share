@@ -1,1 +1,114 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تحدّي الاتجاه من الشمال | NEON QUEST</title>
+<style>
+:root{--bg:#050505;--panel:#101014;--muted:#a8a8b8;--white:#f7f7fb;--yellow:#ffe34d;--green:#42ff9e;--pink:#ff4fd8;--orange:#ff8c42;--cyan:#48eaff;--red:#ff526b}
+*{box-sizing:border-box}body{margin:0;background:#050505;color:var(--white);font-family:Tahoma,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 15% 20%,#ff4fd812,transparent 30%),radial-gradient(ellipse at 85% 15%,#ffe34d10,transparent 27%),radial-gradient(ellipse at 50% 90%,#42ff9e0d,transparent 35%);z-index:-2}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}.star{position:absolute;border-radius:50%;opacity:.7;animation:float linear infinite;filter:drop-shadow(0 0 6px currentColor)}
+@keyframes float{from{transform:translateY(105vh) scale(.6)}to{transform:translateY(-10vh) scale(1.3)}}
+.shell{max-width:940px;margin:auto;padding:22px 16px 40px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.logo{font-size:13px;font-weight:900;letter-spacing:3px;color:var(--yellow);text-shadow:0 0 12px #ffe34d99}.sound,.outline{background:#16161d;border:1px solid #ffffff2a;color:#fff;border-radius:12px;padding:10px 14px;cursor:pointer}
+.hero{text-align:center;padding:38px 10px 25px}.sigil{width:118px;height:118px;margin:auto auto 18px;border-radius:34px;display:grid;place-items:center;font-size:58px;background:linear-gradient(145deg,#1d1b12,#111);border:1px solid #ffe34d88;box-shadow:0 0 14px #ffe34d55,0 0 38px #ff8c4233,inset 0 0 24px #ffe34d19;animation:levitate 3.5s ease-in-out infinite}
+@keyframes levitate{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+h1{font-size:clamp(29px,5vw,48px);margin:8px 0;background:linear-gradient(90deg,var(--yellow),var(--green),var(--pink),var(--orange));background-size:250%;color:transparent;background-clip:text;animation:gradient 6s linear infinite;text-shadow:0 0 25px #ffdf4030}
+@keyframes gradient{to{background-position:250% center}}.lead{color:#b9b9c8;line-height:1.9;max-width:650px;margin:10px auto}.panel{position:relative;background:linear-gradient(145deg,#17171d,#0d0d12);border:1px solid #ffffff1a;border-radius:22px;padding:22px;margin:14px 0;box-shadow:0 15px 45px #0009,inset 0 1px #ffffff0a;overflow:hidden}
+.panel:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--yellow),var(--green),var(--pink),transparent);opacity:.8}
+.label{color:#bdbdcb;font-size:13px;margin:0 0 14px}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.fact{background:#09090d;border:1px solid #ffffff15;border-radius:15px;padding:14px;text-align:center}.fact b{display:block;font-size:21px;margin-bottom:6px}.fact small{color:#aaaaba}
+.btn{border:0;border-radius:15px;padding:16px 20px;font-size:17px;font-weight:900;color:#101014;background:linear-gradient(100deg,var(--yellow),var(--green));box-shadow:0 0 20px #a9ff5970;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-3px);box-shadow:0 0 30px #a9ff59aa}.btn.full{width:100%;margin-top:14px}
+.hidden{display:none!important}.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{background:#09090d;border:1px solid #ffffff18;border-radius:15px;padding:12px;text-align:center}.metric span{display:block;color:#a5a5b5;font-size:12px}.metric b{display:block;font-size:23px;margin-top:5px;color:var(--yellow);text-shadow:0 0 12px #ffe34d55}
+.progress{height:8px;background:#292932;border-radius:20px;margin:16px 0 20px;overflow:hidden}.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--green));box-shadow:0 0 15px var(--green);transition:width .4s}
+.question-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.pill{padding:7px 12px;border-radius:30px;font-size:12px;font-weight:bold;border:1px solid currentColor}.easy{color:var(--green);background:#42ff9e12}.medium{color:var(--yellow);background:#ffe34d12}.hard{color:var(--pink);background:#ff4fd812}.category{color:#a9a9b9;font-size:12px}
+.question{font-size:clamp(20px,3vw,27px);line-height:1.85;margin:22px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.answer{background:#17171e;color:#f5f5fa;border:1px solid #ffffff20;border-radius:15px;min-height:68px;text-align:right;padding:15px;font:inherit;font-size:16px;cursor:pointer;transition:.2s;position:relative;overflow:hidden}.answer:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--pink),var(--yellow),var(--green));opacity:0;transition:.2s}.answer:hover:not(:disabled){transform:translateY(-3px);border-color:#ffe34d99;box-shadow:0 0 20px #ffe34d22}.answer:hover:before{opacity:1}.answer:disabled{cursor:default}.answer.good{border:1px solid var(--green);background:#0c2a1d;box-shadow:0 0 20px #42ff9e30;animation:pop .35s}.answer.bad{border:1px solid var(--red);background:#32121a;box-shadow:0 0 20px #ff526b30;animation:shake .3s}
+@keyframes pop{50%{transform:scale(1.025)}}@keyframes shake{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+.feedback{display:none;margin-top:16px;padding:15px;border-radius:14px;line-height:1.9;background:#1c1c25;border:1px solid #ffffff25}.feedback.show{display:block;animation:appear .3s}.feedback.good{border-color:#42ff9e88}.feedback.bad{border-color:#ff526b88}@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}.actions button{flex:1}.hint{background:#18151c;border:1px solid #ff4fd877;color:#ffd8f7;border-radius:13px;padding:12px;cursor:pointer}.next{background:#202017;border:1px solid #ffe34d88;color:var(--yellow);border-radius:13px;padding:12px;cursor:pointer}.next:disabled{opacity:.35;cursor:not-allowed}
+.hintline{display:none;color:#ffdcf5;line-height:1.8;padding:12px;border-radius:12px;background:#261426;margin-top:12px}.hintline.show{display:block}
+.result{text-align:center;padding:32px 15px}.trophy{font-size:64px;filter:drop-shadow(0 0 15px var(--yellow))}.score{font-size:48px;color:var(--yellow);text-shadow:0 0 18px #ffe34d88;margin:12px}.result h2{font-size:30px}.small{color:#b1b1bf;line-height:1.9}
+.confetti{position:fixed;top:-15px;width:8px;height:13px;z-index:5;animation:fall 2.5s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(760deg);opacity:0}}
+footer{text-align:center;color:#696977;font-size:11px;margin:22px 0 0}
+@media(max-width:600px){.shell{padding:14px 10px}.panel{padding:16px}.answers{grid-template-columns:1fr}.facts{gap:6px}.fact{padding:10px 5px}.fact b{font-size:17px}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<main class="shell">
+<header class="top"><div class="logo">✦ NEON QUEST <span style="color:#aaa">/ MATH ARENA</span></div><button type="button" class="sound" id="sound">♫ تشغيل المؤثرات</button></header>
+<section id="home-screen">
+ <div class="hero"><div class="sigil">🧭</div><div style="color:#aaa;font-size:12px;letter-spacing:2px">الوحدة الرابعة · الدرس الأول</div><h1>تحدّي الاتجاه من الشمال</h1><p class="lead">20 سؤالًا متنوعًا. الصعوبة تتغير عشوائيًا مع كل سؤال — هل تستطيع جمع أكبر عدد من النقاط؟</p></div>
+ <div class="panel"><p class="label">◈ نظام التحدّي</p><div class="facts">
+  <div class="fact"><b style="color:var(--green)">20</b><small>سؤالًا بالضبط</small></div>
+  <div class="fact"><b style="color:var(--yellow)">10</b><small>نقاط للإجابة الصحيحة</small></div>
+  <div class="fact"><b style="color:var(--pink)">🎲</b><small>صعوبة عشوائية</small></div>
+ </div><p class="small" style="margin:16px 0 0">لن تختار مستوى الصعوبة. ستظهر لك صعوبة كل سؤال قبل الإجابة: سهل أو متوسط أو صعب. الأسئلة تعتمد على الفهم والحساب فقط، ولا تحتاج إلى مسطرة أو منقلة.</p></div>
+ <div class="panel"><p class="label">◈ قواعد اللعب</p><p class="small">• إجابة صحيحة: +10 نقاط.<br>• إجابة خاطئة: 0 نقاط، مع إظهار الحل والتفسير.<br>• تلميح واحد لكل سؤال، ويخفض نقاط السؤال إلى النصف.<br>• ترتيب الأسئلة والاختيارات يتغير في كل جولة.</p></div>
+ <button type="button" class="btn full" id="start">ابدأ التحدّي الآن ⚡</button>
+ <footer>BLACK EDITION · NEON LIGHTS · 20 QUESTIONS</footer>
+</section>
+<section id="game" class="hidden">
+ <div class="hud"><div class="metric"><span>مجموع النقاط</span><b id="score">0</b></div><div class="metric"><span>رقم السؤال</span><b id="number">1 / 20</b></div><div class="metric"><span>الإجابات الصحيحة</span><b id="correct">0</b></div></div>
+ <div class="progress"><i id="bar"></i></div>
+ <div class="panel">
+  <div class="question-head"><span id="difficulty" class="pill easy">سهل</span><span id="category" class="category">الاتجاهات</span></div>
+  <div id="question" class="question"></div>
+  <div id="answers" class="answers"></div>
+  <div id="feedback" class="feedback"></div>
+  <div class="actions"><button type="button" class="hint" id="hint">✧ تلميح — نصف النقاط</button><button type="button" class="next" id="next" disabled>السؤال التالي ←</button></div>
+  <div id="hintline" class="hintline"></div>
+ </div>
+</section>
+<section id="result" class="hidden">
+ <div class="panel result"><div class="trophy" id="trophy">🏆</div><h2 id="endTitle">أحسنت!</h2><div class="score"><span id="finalScore">0</span> نقطة</div><p class="small" id="summary"></p>
+ <div class="facts"><div class="fact"><b id="right" style="color:var(--green)">0</b><small>صحيح</small></div><div class="fact"><b id="wrong" style="color:var(--red)">0</b><small>خطأ</small></div><div class="fact"><b id="percent" style="color:var(--yellow)">0%</b><small>نسبة الإجابات الصحيحة</small></div></div>
+ <button type="button" class="btn full" id="again">إعادة اللعب 🔁</button><button type="button" class="outline" style="margin-top:10px;width:100%" id="back-home">القائمة الرئيسية</button></div>
+</section>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+const bank=[
+{d:"سهل",c:"مفهوم الاتجاه",q:"من أي خط يبدأ قياس الاتجاه من الشمال؟",o:["خط الشمال الجغرافي","خط الجنوب","خط الشرق","خط الغرب"],a:0,e:"يبدأ الاتجاه من خط الشمال الجغرافي عند نقطة البداية."},
+{d:"سهل",c:"طريقة القياس",q:"في أي اتجاه تُقاس زاوية الاتجاه من الشمال؟",o:["مع حركة عقارب الساعة","عكس حركة عقارب الساعة","من الجنوب نحو الشمال","من الشرق نحو الغرب"],a:0,e:"يقاس الاتجاه من الشمال باتجاه حركة عقارب الساعة."},
+{d:"سهل",c:"كتابة الاتجاه",q:"كيف نكتب قياس الاتجاه من الشمال؟",o:["باستعمال ثلاثة أرقام","باستعمال رقمين فقط","باستعمال أربعة أرقام","باستعمال حرف واحد"],a:0,e:"يكتب الاتجاه من الشمال باستعمال ثلاث منازل رقمية."},
+{d:"سهل",c:"مدى القياس",q:"أي مدى يمثل قياسات الاتجاه من الشمال؟",o:["من 000° إلى 360°","من 000° إلى 180°","من 090° إلى 270°","من 010° إلى 100°"],a:0,e:"تكون قياسات الاتجاه بين 000° و360°."},
+{d:"سهل",c:"اتجاهات رئيسة",q:"ما قياس اتجاه الشمال؟",o:["000°","090°","180°","270°"],a:0,e:"اتجاه الشمال يساوي 000°."},
+{d:"سهل",c:"اتجاهات رئيسة",q:"ما قياس اتجاه الشرق؟",o:["090°","180°","270°","045°"],a:0,e:"اتجاه الشرق يساوي 090°."},
+{d:"سهل",c:"اتجاهات رئيسة",q:"ما قياس اتجاه الجنوب؟",o:["180°","090°","270°","315°"],a:0,e:"اتجاه الجنوب يساوي 180°."},
+{d:"سهل",c:"اتجاهات فرعية",q:"ما قياس اتجاه الشمال الشرقي NE؟",o:["045°","135°","225°","315°"],a:0,e:"الشمال الشرقي يقع بين الشمال والشرق، وقياسه 045°."},
+{d:"سهل",c:"اتجاهات فرعية",q:"أي اتجاه يمثله القياس 135°؟",o:["الجنوب الشرقي SE","الشمال الشرقي NE","الشمال الغربي NW","الجنوب الغربي SW"],a:0,e:"الجنوب الشرقي SE قياسه 135°."},
+{d:"سهل",c:"اتجاهات فرعية",q:"ما قياس اتجاه الجنوب الغربي SW؟",o:["225°","045°","135°","315°"],a:0,e:"اتجاه الجنوب الغربي يساوي 225°."},
+{d:"متوسط",c:"اتجاهات رئيسة",q:"أي اتجاه رئيس قياسه 270°؟",o:["الغرب","الشرق","الشمال","الجنوب"],a:0,e:"اتجاه الغرب يساوي 270°."},
+{d:"متوسط",c:"اتجاهات فرعية",q:"أي اتجاه يمثله القياس 315°؟",o:["الشمال الغربي NW","الجنوب الغربي SW","الجنوب الشرقي SE","الشمال الشرقي NE"],a:0,e:"الشمال الغربي NW قياسه 315°."},
+{d:"متوسط",c:"الاتجاه العكسي",q:"إذا كان اتجاه B من A يساوي 070°، فما اتجاه A من B؟",o:["250°","110°","290°","070°"],a:0,e:"لإيجاد الاتجاه العكسي نضيف 180°: 070° + 180° = 250°."},
+{d:"متوسط",c:"الاتجاه العكسي",q:"إذا كان اتجاه نقطة 240°، فما اتجاهها العكسي؟",o:["060°","120°","300°","240°"],a:0,e:"نطرح 180° من 240°، فنحصل على 060°."},
+{d:"متوسط",c:"الاتجاه العكسي",q:"اتجاه سفينة من الميناء 200°. ما اتجاه الميناء من السفينة؟",o:["020°","160°","300°","200°"],a:0,e:"الاتجاه العكسي يبعد 180°: 200° − 180° = 020°."},
+{d:"متوسط",c:"حساب الاتجاه",q:"اتجاه مدينة A من مدينة B هو 115°. ما اتجاه B من A؟",o:["295°","245°","065°","115°"],a:0,e:"115° + 180° = 295°."},
+{d:"صعب",c:"تحدي الاتجاه العكسي",q:"إذا كان الاتجاه 325°، فما الاتجاه العكسي؟",o:["145°","055°","215°","325°"],a:0,e:"325° + 180° = 505°. نطرح 360°، فيكون الاتجاه 145°."},
+{d:"صعب",c:"تحدي الاتجاه العكسي",q:"إذا كان الاتجاه العكسي 040°، فما الاتجاه الأصلي؟",o:["220°","140°","320°","040°"],a:0,e:"الاتجاهان متعاكسان بفارق 180°؛ 040° + 180° = 220°."},
+{d:"صعب",c:"تطبيق حسابي",q:"اتجاه C من A يساوي 115°. ما اتجاه A من C؟",o:["295°","245°","065°","115°"],a:0,e:"نضيف 180° إلى 115° فنحصل على 295°."},
+{d:"صعب",c:"فهم الاتجاهات",q:"أي عبارة صحيحة عن الاتجاهين المتعاكسين بين نقطتين؟",o:["يختلف قياسهما بمقدار 180°","مجموعهما 90°","قياسهما متساوٍ دائمًا","يختلفان بمقدار 360°"],a:0,e:"الاتجاه من A إلى B والاتجاه من B إلى A متعاكسان، والفرق بينهما 180°."}
+];
+const $=id=>document.getElementById(id);let qs=[],i=0,score=0,right=0,wrong=0,answered=false,usedHint=false,muted=true,ctx=null;
+function shuffle(a){a=[...a];for(let j=a.length-1;j>0;j--){let k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]]}return a}
+function tone(kind){if(muted)return;try{ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();if(ctx.state==="suspended")ctx.resume();let seq=kind==="bad"?[260,180]:kind==="hint"?[500,700]:[520,660,790,1040];seq.forEach((f,n)=>{let o=ctx.createOscillator(),g=ctx.createGain();o.type=kind==="bad"?"triangle":"sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,ctx.currentTime+n*.1);g.gain.exponentialRampToValueAtTime(.07,ctx.currentTime+n*.1+.02);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+n*.1+.18);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime+n*.1);o.stop(ctx.currentTime+n*.1+.2)})}catch(e){}}
+$("sound").addEventListener("click",()=>{muted=!muted;$("sound").textContent=muted?"♫ تشغيل المؤثرات":"♫ إيقاف المؤثرات";if(!muted)tone("hint")});
+function show(id){["home-screen","game","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function start(){
+  if(bank.length!==20){alert("تعذر بدء التحدي: عدد الأسئلة غير مكتمل.");return}
+  qs=shuffle(bank);i=score=right=wrong=0;show("game");render();
+}
+function render(){answered=false;usedHint=false;let q=qs[i];$("number").textContent=(i+1)+" / 20";$("score").textContent=score;$("correct").textContent=right;$("bar").style.width=(i/20*100)+"%";$("difficulty").textContent=q.d;$("difficulty").className="pill "+(q.d==="سهل"?"easy":q.d==="متوسط"?"medium":"hard");$("category").textContent=q.c;$("question").textContent=q.q;$("feedback").className="feedback";$("feedback").textContent="";$("hintline").className="hintline";$("hintline").textContent="";$("hint").disabled=false;$("hint").textContent="✧ تلميح — نصف النقاط";$("next").disabled=true;$("next").textContent=i===19?"عرض النتيجة 🏆":"السؤال التالي ←";$("answers").innerHTML="";
+let opts=q.o.map((v,n)=>({v,correct:n===q.a}));shuffle(opts).forEach((x,n)=>{let b=document.createElement("button");b.className="answer";b.textContent=["أ","ب","ج","د"][n]+" — "+x.v;b.onclick=()=>choose(b,x,q);$("answers").appendChild(b)})}
+function choose(btn,opt,q){if(answered)return;answered=true;let points=opt.correct?(usedHint?5:10):0;score+=points;if(opt.correct){right++;btn.classList.add("good");tone("good");if(!usedHint)confetti()}else{wrong++;btn.classList.add("bad");tone("bad")}
+[...$("answers").children].forEach(b=>{b.disabled=true;if(b.textContent.includes(q.o[q.a]))b.classList.add("good")});
+let f=$("feedback");f.className="feedback show "+(opt.correct?"good":"bad");f.innerHTML=(opt.correct?"<b style='color:var(--green)'>إجابة صحيحة! +"+points+" نقاط ✓</b>":"<b style='color:var(--red)'>إجابة غير صحيحة ✕</b> — 0 نقطة")+"<br>"+q.e+"<br><span style='color:#ddd'>الإجابة الصحيحة: "+q.o[q.a]+"</span>";$("score").textContent=score;$("correct").textContent=right;$("hint").disabled=true;$("next").disabled=false}
+$("hint").addEventListener("click",()=>{if(answered||usedHint)return;usedHint=true;$("hint").disabled=true;$("hint").textContent="تم استخدام التلميح";$("hintline").textContent="تذكّر القاعدة: يبدأ الاتجاه من الشمال ويقاس مع عقارب الساعة. أما الاتجاه العكسي فيختلف بمقدار 180°."; $("hintline").className="hintline show";tone("hint")});
+$("next").addEventListener("click",()=>{if(!answered)return;i++;if(i<20)render();else finish()});
+function confetti(){let colors=["#ffe34d","#42ff9e","#ff4fd8","#ff8c42","#48eaff"];for(let n=0;n<36;n++){let p=document.createElement("i");p.className="confetti";p.style.left=Math.random()*100+"vw";p.style.background=colors[n%colors.length];p.style.boxShadow="0 0 9px "+colors[n%colors.length];p.style.animationDuration=(1.4+Math.random()*1.7)+"s";document.body.appendChild(p);setTimeout(()=>p.remove(),3300)}}
+function finish(){show("result");$("bar").style.width="100%";let pct=Math.round(right/20*100);$("finalScore").textContent=score;$("right").textContent=right;$("wrong").textContent=wrong;$("percent").textContent=pct+"%";let title=pct>=90?"عبقري الاتجاهات!":pct>=70?"مستكشف محترف!":pct>=50?"إنجاز جيد!":"حاول مرة أخرى!";$("endTitle").textContent=title;$("trophy").textContent=pct>=90?"👑":pct>=70?"🏆":pct>=50?"🥈":"🧭";$("summary").textContent="أنهيت الأسئلة العشرين. حصلت على "+right+" إجابة صحيحة من أصل 20. "+(pct>=70?"أداء قوي — واصل التقدم!":"راجع قواعد الاتجاهات العكسية والاتجاهات الرئيسة ثم أعد التحدي.");if(pct>=70){tone("good");confetti()}else tone("bad")}
+$("start").addEventListener("click", function(event){event.preventDefault();start()});$("again").addEventListener("click", function(event){event.preventDefault();start()});$("back-home").addEventListener("click", function(event){event.preventDefault();show("home-screen")});
+let colors=["#ffe34d","#42ff9e","#ff4fd8","#ff8c42","#48eaff"];for(let n=0;n<48;n++){let s=document.createElement("i");s.className="star";s.style.left=Math.random()*100+"%";s.style.width=s.style.height=(2+Math.random()*3)+"px";s.style.background=colors[n%colors.length];s.style.color=colors[n%colors.length];s.style.animationDuration=(9+Math.random()*18)+"s";s.style.animationDelay=(-Math.random()*20)+"s";$("stars").appendChild(s)}
 
+});
+</script>
+</body></html>
